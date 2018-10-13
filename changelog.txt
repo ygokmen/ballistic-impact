@@ -1,0 +1,30 @@
+
+[B]ChangeLog:[/B] [SPOILER]
+ V1.15 - 10-12-2018:
+  - New: Damage vs armor calculation now uses linearConversion instead of made-up math
+  - New: Two variables to enable-disable and configure required caliber
+  - New: CBA addon options menu
+  - New: Visual effects for blood and other particle effects
+  - Add: improved visuals and particle effects
+  - Add: 4 new sound samples
+  - Fix: Incompatible particle 'bloodMist' in particleClass causing error in game log
+  - Code clean-up and refactor
+  
+ V1.14 - 05-16-2018:
+  - Fixed: replaced faulty effects with new ones (dat water splash is gone now)
+  - *New*: metal surfaces now have bullet impact effects.
+  
+ V1.12 - 02-04-2018:
+  - Added vector 3D calculations for setting up velocity (using weaponDirection and VectorMultiply commands)
+  - Now hat / helmet movement and destruction simulation depends on projectile impact vector (no more random)
+
+ V1.1 - 01-29-2018;
+  - Now helmet/hat's can fly off 
+  - New destruction particles for headgear
+  - Added 9 different types of HMD particle fx
+  - Added 5 new friction spark fx
+  - New damage effects
+  
+  V1.0 - 01-19-2018:
+  - Addon Released on steam as 'goko ballistic impact'
+[/SPOILER]
