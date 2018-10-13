@@ -1,3 +1,9 @@
+/*	
+	functions for nvg/hmd destruction visual FX of add-on goko ballistic impact mod
+	Author: Gokmen
+	website: github.com/the0utsider
+*/
+
 gokoBI_particleFX_cheesyDestruct = 
 {      
 	if (!hasInterface) exitWith {};   
@@ -145,7 +151,7 @@ gokoBI_particleFX_hmdSparks3 =
 		0  //bounce           
 	];            
 	_blood  setParticleRandom [0.5, [0, 0, 0], [0.25, 0.25, 0.25], 0, 0.5, [0, 0, 0, 0.1], 0, 0, 10];   
-	_blood setdropinterval 0.0008;           
+	_blood setdropinterval 0.001;           
 	_blood attachTo [_object,[0,0.1,0.22],"head"];                    
 	_bArray pushback _blood;                   
 	_bArray spawn                    
@@ -185,7 +191,7 @@ gokoBI_particleFX_hmdSparks4 =
 		0  //bounce            
 	];             
 	_blood  setParticleRandom [0.5, [0, 0, 0], [0.25, 0.25, 0.25], 0, 0.5, [0, 0, 0, 0.1], 0, 0, 10];    
-	_blood setdropinterval 0.0001;            
+	_blood setdropinterval 0.001;            
 	_blood attachTo [_object,[0,0.1,0.22],"head"];                     
 	_bArray pushback _blood;                    
 	_bArray spawn                     
@@ -225,7 +231,7 @@ gokoBI_particleFX_hmdSparks5 =
 		0  //bounce            
 	];             
 	_blood  setParticleRandom [0.5, [0, 0, 0], [0.25, 0.25, 0.25], 0, 0.5, [0, 0, 0, 0.1], 0, 0, 10];    
-	_blood setdropinterval 0.0004;            
+	_blood setdropinterval 0.001;            
 	_blood attachTo [_object,[0,0.1,0.22],"head"];                     
 	_bArray pushback _blood;                    
 
@@ -266,57 +272,51 @@ gokoBI_particleFX_hmdSparks6 =
 		0  //bounce             
 	];              
 	_blood  setParticleRandom [0.5, [0, 0, 0], [0.25, 0.25, 0.25], 0, 0.5, [0, 0, 0, 0.1], 0, 0, 10];     
-	_blood setdropinterval 0.0001;             
+	_blood setdropinterval 0.001;             
 	_blood attachTo [_object,[0,0.1,0.22],"head"];                      
 	_bArray pushback _blood;                     
 	_bArray spawn                      
 	{                     
 		_bArray = _this;                     
-		sleep 0.03;                     
+		sleep 0.1;                     
 		{ deleteVehicle _x } foreach _bArray;                     
 	};                   
 };  
 
-gokoBI_particleFX_hmdSparks7 = 
-{        
-	if (!hasInterface) exitWith {};        
-	_object = _this;               
-	_bArray = [];               
-	_breath = "#particlesource" createVehicleLocal (getposATL _object);                
-	_breath setParticleClass "goko_helmetparts";                
-	_breath setParticleParams               
-	[            
-		["\a3\Data_f\ParticleEffects\Universal\universal", 16, 0, 2, 1], //shape name               
-		"", //anim name               
-		"billboard",           
-		0.5, 6, //timer period & life time               
-		[0, 0, 0], //pos            
-		[0,1 + random -2,1], //moveVel          
-		3,1.275,0.93,0.2, //rotation vel, weight, volume, rubbing               
-		[0.01,0.05,0], //size transform              
-		[[1,1,1,-250], [1,1,1,-250], [1,1,1,-250]],         
-		[6000], //animationPhase (speed in config)               
-		0.9, //randomdirection period               
-		0.2, //random direction intensity               
-		"", //onTimer               
-		"", //before destroy               
-		"", //object               
-		0, //angle               
-		false, //on surface               
-		0.0 //bounce on surface               
-	];               
-	_breath setParticleRandom [0.5, [0, 0, 0], [0.25, 0.25, 0.25], 0, 0.5, [0, 0, 0, 0.1], 0, 0, 10];         
-	_breath setDropInterval 0.01;   
-	emitter = _breath;             
-	_breath attachTo [_object,[0,0.11,0.2], "head"];                
-	_bArray pushback _breath;               
-	_bArray spawn                
-	{               
-		_bArray = _this;               
-		sleep random 0.5;               
-		{ deleteVehicle _x } foreach _bArray;               
-	};            
-};   
+gokoBI_particleFX_hmdSparks7 =  
+{       
+	if (!hasInterface) exitWith {};      
+	_object = _this;                
+	_bArray = [];                
+	_blood = "#particlesource" createVehicleLocal (getposATL _object);                 
+	_blood setParticleClass "gokoFX_Starter_SparksOmniSparkle";         
+	_blood setParticleParams [  
+		["\a3\Data_f\ParticleEffects\Universal\Universal_02", 8, 4, 1, 0],   //model name           
+		"",   //animation           
+		"billboard", //type           
+		0, 0, //period and lifecycle           
+		[0, 0, 0], //position           
+
+		[1.2 +random -2.4, 1.2 +random -2.4, 2 + random 1], //movement vector           
+		1, 22, 1, 0.2, //rotation, weight, volume , rubbing           
+		[0.01,0.01], //size transform           
+		[[1,0.05,0.05,0.08]], //colours and transperancy      
+		[1], //animation speed   
+		2,0,   //random period - intensity   
+		"", //ontimer   
+		"", //with destroy   
+		""   
+	];       //follow   
+	_blood setdropinterval 0.1;           
+	_blood attachTo [_object,[0,0.08,0.2],"head"];                 
+	_bArray pushback _blood;                
+	_bArray spawn                 
+	{                
+		_bArray = _this;                
+		sleep 0.1;                
+		{ deleteVehicle _x } foreach _bArray;                
+	};             
+};    
 
 gokoBI_particleFX_hmdSparks8 = 
 {    

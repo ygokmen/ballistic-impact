@@ -1,3 +1,9 @@
+/*	
+	custom particle FX classes for add-on goko ballistic impact mod
+	Author: Gokmen
+	website: github.com/the0utsider
+*/
+
 class CfgCloudlets
 {
 	class Default;
@@ -199,7 +205,7 @@ class CfgCloudlets
 		rubbing = 0.15;
 		size[] = { 0.1, 0.035, 0 };
 		sizeVar = 0.4;
-		moveVelocity[] = {"surfNormalX * inSpeed / 225","surfNormalY * inSpeed / 225","surfNormalZ * inSpeed / 250"};
+		moveVelocity[] = {"surfNormalX * inSpeed / 250 * 1.33","surfNormalY * inSpeed / 250 * 1.33","surfNormalZ * inSpeed / 250"};
 		moveVelocityVar[] = { 1, 1, 1};
 		bounceOnSurface = 0.1;
 		bounceOnSurfaceVar = 0.2;

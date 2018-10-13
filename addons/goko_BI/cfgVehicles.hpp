@@ -1,3 +1,9 @@
+/*	
+	Initialise handleDamage EH for man main class
+	Author: Gokmen
+	website: github.com/the0utsider
+*/
+
 class CfgVehicles
 {
 	class Land;

@@ -1,3 +1,9 @@
+/*	
+	function classes for add-on goko ballistic impact mod
+	Author: Gokmen
+	website: github.com/the0utsider
+*/
+
 class CfgFunctions
 {
 	class goko
@@ -27,6 +33,11 @@ class CfgFunctions
 			class particlefxOther
 			{
 				file = "goko_BI\functions\fn_particleEffectsOther.sqf";
+				preInit = 1
+			};
+			class gokobi_optionalcba
+			{
+				file = "goko_BI\functions\gokobi_options.sqf";
 				preInit = 1
 			};
 		};

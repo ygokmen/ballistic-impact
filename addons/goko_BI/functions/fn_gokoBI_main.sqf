@@ -1,4 +1,10 @@
-goko_var_AllowedCaliber = profileNamespace getVariable ["goko_var_AllowedCaliber", 1.6]; //only allow designated marksmen rifles, heavy mgs and such remove headgear
+/*	
+	main function of add-on goko ballistic impact mod
+	Author: Gokmen
+	website: github.com/the0utsider
+	used inside Handle damage EH
+*/
+
 fn_goko_ballistic_impact_main =
 {
 	params [
@@ -13,7 +19,7 @@ fn_goko_ballistic_impact_main =
 	];
 	#include "gettersVarsArrays_main.sqf"
 
-	if !(_hitPoint == "hithead" && _damage > 1) exitwith{};
+	if (!gokobi_var_onoffswitch || _hitIndex != 2 || _damage < 0.9) exitWith {};
 	if(_getGlasses != "") then
 	{
 		removeGoggles _unit;
@@ -24,39 +30,45 @@ fn_goko_ballistic_impact_main =
 	{
 		_unit unassignItem _getHeadMountedDisplay;
 		_unit removeItem _getHeadMountedDisplay;
-		playsound3d [format ["%1",_hmdSoundEffects], _unit, false, getPosASL _unit, 1.3, 1, 80];
+		playsound3d [format ["%1",_hmdSoundEffects], _unit, false, getPosASL _unit, 0.8, 1, 70];
 		[_unit, _velocityVector] remoteExecCall ["gokoBI_particleFX_cheesyDestruct"];
 		_unit remoteExecCall [_hmdParticleEffects];
 		_unit remoteExecCall ["gokoBI_particleFX_blackSmoke"];
 	};
 	if (_headgearProtection != 0) then 
 	{
-		if (_projectileForce >= _headgearProtection && _projectileCaliber >= goko_var_AllowedCaliber) then 
+		if (gokobi_var_debug) then { systemChat format ["Protection: %1  Caliber penetration capacity: %2", _headgearProtection, floor _projectileForce] };
+		if ( floor _projectileForce > _headgearProtection && _projectileCaliber >= gokobi_var_AllowedCaliber) then 
 		{
 			[_unit, _velocityVector] remoteExecCall [_helmetParticleEffects];
-			_unit remoteExecCall [_goreParticleEffects];
-			playsound3d [format ["%1",_helmetHitSoundEffects], _unit, false, getPosASL _unit, 1.2, 1, 90];
+			_unit remoteExecCall [_bloodParticleEffects];
+			playsound3d [format ["%1",_helmetPenetrateSoundEffects], _unit, false, getPosASL _unit, 2, 1, 80];
 			
 			if (_projectileCaliber >= _caliberHighest) then 
 			{
+				_unit remoteExecCall [_goreParticleEffects];
 				_unit remoteExecCall ["gokoBI_particleFX_helmetTrashed"];
 				removeHeadgear _unit;
 			} 
 			else 
-			{
-				[_unit, _velocityVector] remoteExecCall [_artisticRemoval];
-				removeHeadgear _unit;	
+			{ 
+				_unit remoteExecCall [_goreParticleEffects];
+				[_unit, _velocityVector] remoteExecCall [_artisticRemoval]; 
+				removeHeadgear _unit 
 			};
 		} 
 		else 
 		{
-			_unit remoteExecCall ["gokoBI_particleFX_smallHelmetParts"];	
+			_unit remoteExecCall ["gokoBI_particleFX_smallHelmetParts"];
+			playsound3d [format ["%1",_helmetHitSoundEffects], _unit, false, getPosASL _unit, 3, 1, 50];			
 		};
 	} 
 	else 
 	{
+		if (!alive _unit) exitWith{};
 		[_unit, _velocityVector] remoteExecCall ["gokoBI_particleFX_FlyOff"];
-		_unit remoteExecCall [_goreParticleEffects];
+		playsound3d [format ["%1",_headshotFleshEffects], _unit, false, getPosASL _unit, 1, 1, 70];
+		_unit remoteExecCall [_bloodParticleEffects];
 		removeHeadgear _unit;	
 	};
 };

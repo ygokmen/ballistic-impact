@@ -1,3 +1,9 @@
+/*	
+	functions for other visual FX of add-on goko ballistic impact mod
+	Author: Gokmen
+	website: github.com/the0utsider
+*/
+
 gokoBI_particleFX_brokenGlassParticles = 
 {       
 	if (!hasInterface) exitWith {};  
@@ -15,7 +21,7 @@ gokoBI_particleFX_brokenGlassParticles =
 			1, 7, //timer period & life time        
 			[0, 0, 0], //position        
 			[1+random -2, 0, random 2], //moveVeocity        
-			2, 10, 1, 0.2, //rotation velocity, weight, volume, rubbing        
+			2, 1, 0.1, 0.2, //rotation velocity, weight, volume, rubbing        
 			[0.05], //size        
 			[[1,1,1,1]], //color        
 			[0.1], //animationPhase (animation speed in config)        

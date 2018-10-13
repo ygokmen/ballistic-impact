@@ -1,3 +1,9 @@
+/*	
+	Initialise handleDamage EH for men
+	Author: Gokmen
+	website: github.com/the0utsider
+*/
+
 if(is3DEN) exitWith {};
 
 _unit = _this select 0;

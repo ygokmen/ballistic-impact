@@ -1,3 +1,9 @@
+/*	
+	functions for helmet destruction visual FX of add-on goko ballistic impact mod
+	Author: Gokmen
+	website: github.com/the0utsider
+*/
+
 gokoBI_particleFX_helmetTrashed = 
 {
 	if (!hasInterface) exitWith {};       
@@ -6,13 +12,13 @@ gokoBI_particleFX_helmetTrashed =
 	for "_i" from 0 to random 3 do             
 	{             
 		_parca = "#particlesource" createVehicleLocal (getposATL _object);              
-		_parca setParticleClass "goko_testparticle";              
+		_parca setParticleClass "goko_goggleparts";              
 		_parca setParticleParams             
 		[             
 			["\A3\data_f\ParticleEffects\Shard\shard3", 1, 0, 1], //shape name             
 			"", //animation name             
 			"SpaceObject", //type             
-			1, random 5, //timer period & life time             
+			1, 2 + random 5, //timer period & life time             
 			[0, 0, 0], //position             
 			[3 + random -6, 3 + random -6,1 + random 6], //moveVeocity             
 			1 + random 4, 1, 0.1, 0, //rotation velocity, weight, volume, rubbing             
@@ -87,10 +93,10 @@ gokoBI_particleFX_FlyOff =
 		[_modelname, 1, 0, 1], //shape name                        
 		"", //animation name                        
 		"SpaceObject", //type                        
-		0, 2.1, //timer period & life time                        
+		0, 3, //timer period & life time                        
 		[0, 0, 0], //position                        
 		_velocity, //moveVeocity                        
-		0.2, 10.30, 0.01, 1, //rotation velocity, weight, volume, rubbing                        
+		0.2, 1, 0.1, 1, //rotation velocity, weight, volume, rubbing                        
 		[0.9], //size                        
 		[[1,1,1,1], [0,0,0,0]], //color                        
 		[10], //animationPhase (animation speed in config)                        

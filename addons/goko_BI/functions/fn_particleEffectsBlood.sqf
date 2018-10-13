@@ -1,3 +1,51 @@
+/*	
+	functions for Blood visual FX of add-on goko ballistic impact mod
+	Author: Gokmen
+	website: github.com/the0utsider
+*/
+
+gokoBI_particleFX_bloodSpit =   
+{         
+	if (!hasInterface) exitWith {};     
+	_object = _this;                 
+	_bArray = [];                 
+	_blood = "#particlesource" createVehicleLocal (getposATL _object);                  
+	_blood setParticleClass "gokoFX_Starter_SparksBurstLOW";          
+
+	_blood setParticleParams [
+		["\a3\Data_f\ParticleEffects\Universal\Universal", 16, 13, 1, 16],   //model name            
+		"",   //animation            
+		"billboard", //type            
+		0.1, 0.05, //period and lifecycle            
+		[0, 0, 0], //position            
+
+		[0.5 + random -1, 0.5 + random -1, 1], //movement vector            
+		1, 1, 0.3, 0, //rotation, weight, volume , rubbing            
+		[0.25, 0.45], //size transform            
+		[[0.1,0,0,0.001], [0.04,0,0,0.05], [1,1,1,0]],    
+		[0.00001],    
+		0.4,    
+		0.4,    
+		"",    
+		"",    
+		"",   
+		360, //angle             
+		false, //on surface             
+		0 //bounce on surface     
+	];     
+	_blood setdropinterval 0.001;            
+	_blood attachTo [_object,[0,0,-0.1],"neck"];                  
+
+	_bArray pushback _blood;                 
+
+	_bArray spawn                  
+	{
+		_bArray = _this;                 
+		sleep 0.2;                 
+		{ deleteVehicle _x } foreach _bArray;                 
+	};              
+};   
+
 gokoBI_particleFX_bloodSpray1 = 
 {       
 	if (!hasInterface) exitWith {};   
@@ -40,44 +88,44 @@ gokoBI_particleFX_bloodSpray1 =
 	};            
 };   
 
-gokoBI_particleFX_bloodSpray2 = 
-{     
-	if (!hasInterface) exitWith {};      
-	_object = _this;                
-	_bArray = [];                
-	_blood = "#particlesource" createVehicleLocal (getposATL _object);                 
-	_blood setParticleClass "goko_helmetparts";         
-	_blood setParticleParams [
-		["\a3\Data_f\ParticleEffects\Universal\Universal", 16, 13, 1, 32],   //model name           
-		"",   //animation           
-		"billboard", //type           
-		0.2, 2, //period and lifecycle           
-		[0, 0, 0], //position           
+gokoBI_particleFX_bloodSpray2 =  
+{      
+	if (!hasInterface) exitWith {};       
+	_object = _this;                 
+	_bArray = [];                 
+	_blood = "#particlesource" createVehicleLocal (getposATL _object);                  
+	_blood setParticleClass "goko_helmetparts";          
+	_blood setParticleParams [ 
+		["\a3\Data_f\ParticleEffects\Universal\Universal", 16, 13, 1, 32],   //model name            
+		"",   //animation            
+		"billboard", //type            
+		0.2, 2, //period and lifecycle            
+		[0, 0, 0], //position            
 
-		[4 + random -8, 3 + random -6, random 9], //movement vector           
-		5, 1, 0.4, 0.4, //rotation, weight, volume , rubbing           
-		[0.05, 1.4], //size transform           
-		[[0.5,0,0,0.6], [0.8,0,0,0.1], [0.1,0,0,0.03]],   
-		[0.00001],   
-		0.4,   
-		0.4,   
+		[3 + random -6, 3 + random -6, random 8], //movement vector            
+		5, 1, 0.4, 0.4, //rotation, weight, volume , rubbing            
+		[0.05, 1.4], //size transform            
+		[[0.5,0,0,0.6], [0.8,0,0,0.1], [0.1,0,0,0.03]],    
+		[0.00001],    
+		0.4,    
+		0.4,    
+		"",    
+		"",    
 		"",   
-		"",   
-		"",  
-		360, //angle            
-		false, //on surface            
-		0 //bounce on surface    
-	];    
-	_blood setdropinterval 0.01;           
-	_blood attachTo [_object,[0,0,0],"neck"];                 
-	_bArray pushback _blood;                
-	_bArray spawn                 
-	{                
-		_bArray = _this;                
-		sleep random 0.5;                
-		{ deleteVehicle _x } foreach _bArray;                
-	};             
-};  
+		360, //angle             
+		false, //on surface             
+		0 //bounce on surface     
+	];     
+	_blood setdropinterval 0.01;            
+	_blood attachTo [_object,[0,0,0],"neck"];                  
+	_bArray pushback _blood;                 
+	_bArray spawn                  
+	{                 
+		_bArray = _this;                 
+		sleep random 0.5;                 
+		{ deleteVehicle _x } foreach _bArray;                 
+	};              
+};   
 
 gokoBI_particleFX_bloodSpray3 = 
 {     
@@ -85,7 +133,7 @@ gokoBI_particleFX_bloodSpray3 =
 	_object = _this;              
 	_bArray = [];              
 	_blood = "#particlesource" createVehicleLocal (getposATL _object);               
-	_blood setParticleClass "BloodMist";       
+	_blood setParticleClass "goko_helmetparts";       
 	_blood setParticleParams [
 		["\a3\Data_f\ParticleEffects\Universal\Universal_02", 8, 4, 1, 0],   //model name         
 		"",   //animation         
@@ -192,3 +240,45 @@ gokoBI_particleFX_bloodCough =
 		{ deleteVehicle _x } foreach _bArray;
 	};        
 };
+
+gokoBI_particleFX_bloodUpNdown =    
+{          
+ if (!hasInterface) exitWith {};      
+ _object = _this;                  
+ _bArray = [];                  
+ _blood = "#particlesource" createVehicleLocal (getposATL _object);                   
+ _blood setParticleClass "ATMineExplosionParticles";           
+ 
+ _blood setParticleParams [ 
+  ["\a3\Data_f\ParticleEffects\Universal\Universal", 16, 13, 1, 16],   //model name             
+  "",   //animation             
+  "billboard", //type             
+  0.1, 5, //period and lifecycle             
+  [0, 0, 0], //position             
+ 
+  [0.5 + random -1, 0.5 + random -1, 1], //movement vector             
+  1, 1, 0.3, 1, //rotation, weight, volume , rubbing             
+  [0.2, 4], //size transform             
+  [[1,1,1,0.12], [0.01,0.01,0.01,0.0]],     
+  [0.00001],     
+  0.4,     
+  0.4,     
+  "",     
+  "",     
+  "",    
+  360, //angle              
+  false, //on surface              
+  0 //bounce on surface      
+ ];      
+ _blood setdropinterval 0.003;             
+ _blood attachTo [_object,[0,0,-0.1],"neck"];                   
+ 
+ _bArray pushback _blood;                  
+ 
+ _bArray spawn                   
+ { 
+  _bArray = _this;                  
+  sleep 0.2;                  
+  { deleteVehicle _x } foreach _bArray;                  
+ };               
+};   

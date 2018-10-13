@@ -1,3 +1,9 @@
+/*	
+	custom light classes for add-on goko ballistic impact mod
+	Author: Gokmen
+	website: github.com/the0utsider
+*/
+
 class CfgLights
 {
 	class Goko_bulletexplo
